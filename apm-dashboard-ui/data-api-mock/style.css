@@ -1,0 +1,74 @@
+/* apm-dashboard-ui/style.css */
+body {
+    /* font-family is set by Tailwind via Inter in the HTML head */
+    margin: 0;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Tab styling */
+.ui-tab {
+    border-color: transparent; /* Default state */
+    color: #6b7280; /* Default text color (gray-500) */
+}
+
+.ui-tab:hover {
+    border-color: #d1d5db; /* gray-300 */
+    color: #4b5563; /* gray-600 */
+}
+
+.ui-tab.active-tab {
+    color: #1d4ed8; /* brand-blue */
+    border-color: #1d4ed8; /* brand-blue */
+    font-weight: 600;
+}
+
+.tab-panel {
+    /* 'hidden' class will be toggled by JS */
+}
+
+/* Table styling for logs and metrics (Tailwind will handle most of this if we use its classes in JS) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f8f9fa; /* A light gray for headers */
+    font-weight: 600;
+    color: #495057;
+}
+
+tr:hover {
+    background-color: #f1f1f1; /* Slight hover effect for rows */
+}
+
+/* Styling for preformatted text (e.g., JSON data) */
+pre {
+    background-color: #2d2d2d; /* Dark background for code blocks */
+    color: #f8f8f2; /* Light text for contrast */
+    padding: 15px;
+    border-radius: 6px;
+    overflow-x: auto; /* Allow horizontal scrolling for long lines */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+    line-height: 1.5;
+    white-space: pre-wrap; /* Wrap long lines but preserve formatting */
+    word-break: break-all; /* Break long words/strings if necessary */
+}
+
+/* Specific log level styling */
+.log-level-INFO { color: #2563eb; } /* blue-600 */
+.log-level-WARN { color: #f59e0b; } /* amber-500 */
+.log-level-ERROR { color: #dc2626; font-weight: bold; } /* red-600 */
+.log-level-DEBUG { color: #6b7280; } /* gray-500 */
+
+.metric-status-success { color: #16a34a; } /* green-600 */
+.metric-status-error { color: #dc2626; font-weight: bold; } /* red-600 */
