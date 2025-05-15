@@ -1,0 +1,22 @@
+{
+  "name": "apm-data-api-mock",
+  "version": "1.0.0",
+  "description": "Mock API to serve APM data to the dashboard UI.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "apm",
+    "api",
+    "dashboard",
+    "simulation"
+  ],
+  "author": "APM Project",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5"
+  }
+}
