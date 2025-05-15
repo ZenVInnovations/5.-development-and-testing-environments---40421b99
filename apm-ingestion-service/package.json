@@ -1,0 +1,21 @@
+{
+  "name": "apm-ingestion-service",
+  "version": "1.0.0",
+  "description": "Simulated APM ingestion service endpoint.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "apm",
+    "ingestion",
+    "simulation"
+  ],
+  "author": "APM Project",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "body-parser": "^1.20.2"
+  }
+}
