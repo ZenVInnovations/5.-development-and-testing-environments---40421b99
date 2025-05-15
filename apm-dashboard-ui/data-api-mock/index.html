@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APM Dashboard (Simulation)</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Basic Tailwind config (optional, for custom theme colors if needed)
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-blue': '#1d4ed8',
+                        'brand-lightblue': '#eff6ff',
+                        'brand-darkblue': '#1e3a8a',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+    <nav class="bg-brand-darkblue p-4 shadow-md">
+        <div class="container mx-auto">
+            <h1 class="text-2xl font-bold text-white">Serverless APM Dashboard (Simulation)</h1>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-4 md:p-6">
+        <section id="summary-section" class="mb-8 p-6 bg-white rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-4 text-gray-700 border-b pb-2">Overall Summary</h2>
+            <div id="summary-content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="p-4 bg-brand-lightblue rounded-lg shadow-sm">
+                    <h3 class="text-sm font-medium text-gray-500">Total Ingested Items</h3>
+                    <p id="total-items" class="text-3xl font-bold text-brand-darkblue">Loading...</p>
+                </div>
+                <div class="p-4 bg-brand-lightblue rounded-lg shadow-sm">
+                    <h3 class="text-sm font-medium text-gray-500">Total Function Invocations</h3>
+                    <p id="total-invocations" class="text-3xl font-bold text-brand-darkblue">Loading...</p>
+                </div>
+                <div class="p-4 bg-brand-lightblue rounded-lg shadow-sm">
+                    <h3 class="text-sm font-medium text-gray-500">Total Log Entries</h3>
+                    <p id="total-logs" class="text-3xl font-bold text-brand-darkblue">Loading...</p>
+                </div>
+                <div class="p-4 bg-brand-lightblue rounded-lg shadow-sm">
+                    <h3 class="text-sm font-medium text-gray-500">Total Errors (from Logs)</h3>
+                    <p id="total-errors" class="text-3xl font-bold text-red-600">Loading...</p>
+                </div>
+            </div>
+            <div class="mt-4">
+                 <button id="refresh-data-btn" class="bg-brand-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-150 ease-in-out">
+                    Refresh Data
+                </button>
+            </div>
+        </section>
+
+        <div class="mb-4 border-b border-gray-200">
+            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="tab-navigation" role="tablist">
+                <li class="mr-2" role="presentation">
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg ui-tab active-tab" id="metrics-tab-btn" type="button" role="tab" aria-controls="metrics-content" aria-selected="true">Metrics</button>
+                </li>
+                <li class="mr-2" role="presentation">
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg ui-tab" id="logs-tab-btn" type="button" role="tab" aria-controls="logs-content" aria-selected="false">Logs</button>
+                </li>
+                 <li class="mr-2" role="presentation">
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg ui-tab" id="raw-data-tab-btn" type="button" role="tab" aria-controls="raw-data-content" aria-selected="false">All Raw Data</button>
+                </li>
+            </ul>
+        </div>
+
+        <section id="metrics-content" role="tabpanel" aria-labelledby="metrics-tab-btn" class="tab-panel p-6 bg-white rounded-lg shadow mb-8">
+            <h2 class="text-xl font-semibold mb-4 text-gray-700 border-b pb-2">Metrics Overview</h2>
+            <div id="metrics-data" class="overflow-x-auto">
+                <p class="text-gray-500">Loading metrics...</p>
+                </div>
+        </section>
+
+        <section id="logs-content" role="tabpanel" aria-labelledby="logs-tab-btn" class="tab-panel hidden p-6 bg-white rounded-lg shadow mb-8">
+            <h2 class="text-xl font-semibold mb-4 text-gray-700 border-b pb-2">Log Entries</h2>
+            <div id="logs-data" class="overflow-x-auto">
+                <p class="text-gray-500">Loading logs...</p>
+                </div>
+        </section>
+
+        <section id="raw-data-content" role="tabpanel" aria-labelledby="raw-data-tab-btn" class="tab-panel hidden p-6 bg-white rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-4 text-gray-700 border-b pb-2">All Raw Ingested Data</h2>
+            <div id="all-data" class="overflow-x-auto max-h-96">
+                <p class="text-gray-500">Loading all raw data...</p>
+                </div>
+        </section>
+    </div>
+
+    <footer class="text-center p-4 text-sm text-gray-500 mt-8">
+        APM Dashboard Simulation &copy; 2025
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
