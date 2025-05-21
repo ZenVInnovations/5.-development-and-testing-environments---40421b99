@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>APM Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>APM Dashboard - System Metrics</h1>
+  <canvas id="cpuChart" width="400" height="150"></canvas>
+  <canvas id="ramChart" width="400" height="150"></canvas>
+  <canvas id="netChart" width="400" height="150"></canvas>
+
+  <script>
+    const cpuCtx = document.getElementById('cpuChart').getContext('2d');
+    const ramCtx = document.getElementById('ramChart').getContext('2d');
+    const netCtx = document.getElementById('netChart').getContext('2d');
+
+    const cpuChart = new Chart(cpuCtx, {
+      type: 'line',
+      data: { labels: [], datasets: [{ label: 'CPU (%)', data: [], borderColor: 'red', fill: false }] }
+    });
+
+    const ramChart = new Chart(ramCtx, {
+      type: 'line',
+      data: { labels: [], datasets: [{ label: 'RAM (%)', data: [], borderColor: 'green', fill: false }] }
+    });
+
+    const netChart = new Chart(netCtx, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [
+          { label: 'Bytes Sent', data: [], borderColor: 'blue', fill: false },
+          { label: 'Bytes Received', data: [], borderColor: 'purple', fill: false }
+        ]
+      }
+    });
+
+    function updateCharts() {
+      fetch('/metrics')
+        .then(res => res.json())
+        .then(data => {
+          const time = new Date().toLocaleTimeString();
+
+          cpuChart.data.labels.push(time);
+          cpuChart.data.datasets[0].data.push(data.cpu);
+          if (cpuChart.data.labels.length > 20) {
+            cpuChart.data.labels.shift();
+            cpuChart.data.datasets[0].data.shift();
+          }
+          cpuChart.update();
+
+          ramChart.data.labels.push(time);
+          ramChart.data.datasets[0].data.push(data.ram);
+          if (ramChart.data.labels.length > 20) {
+            ramChart.data.labels.shift();
+            ramChart.data.datasets[0].data.shift();
+          }
+          ramChart.update();
+
+          netChart.data.labels.push(time);
+          netChart.data.datasets[0].data.push(data.bytes_sent);
+          netChart.data.datasets[1].data.push(data.bytes_recv);
+          if (netChart.data.labels.length > 20) {
+            netChart.data.labels.shift();
+            netChart.data.datasets[0].data.shift();
+            netChart.data.datasets[1].data.shift();
+          }
+          netChart.update();
+        });
+    }
+
+    setInterval(updateCharts, 3000);
+  </script>
+</body>
+</html>
