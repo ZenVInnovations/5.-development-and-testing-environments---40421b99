@@ -1,0 +1,7 @@
+applications:
+  - name: apm-flask-app
+    memory: 256M
+    instances: 1
+    buildpack: python_buildpack
+    path: .
+    command: python app.py
